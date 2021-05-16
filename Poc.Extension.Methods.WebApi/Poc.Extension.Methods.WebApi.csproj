@@ -4,5 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Poc.Extension.Methods.Application\Poc.Extension.Methods.Application.csproj" />
+    <ProjectReference Include="..\Poc.Extension.Methods.Domain\Poc.Extension.Methods.Domain.csproj" />
+    <ProjectReference Include="..\Poc.Extension.Methods.Infra\Poc.Extension.Methods.Infra.csproj" />
+  </ItemGroup>
+
 
 </Project>
