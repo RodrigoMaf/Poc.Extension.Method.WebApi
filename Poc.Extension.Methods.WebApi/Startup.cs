@@ -13,6 +13,7 @@ using Poc.Extension.Methods.Application.Implements;
 using Poc.Extension.Methods.Domain.Implements;
 using Poc.Extension.Methods.Domain.Interfaces;
 using Poc.Extension.Methods.Infra.Implements;
+using Poc.Extension.Methods.WebApi.Registers;
 
 namespace Poc.Extension.Methods.WebApi
 {
@@ -29,33 +30,17 @@ namespace Poc.Extension.Methods.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFirstApplication, FirstApplication>();
-            services.AddSingleton<IFirstDomain, FirstDomain>();
-            services.AddSingleton<IFileServer, FileServer>();
-            services.AddSingleton<IProxyService, ProxyService>();
-            services.AddSingleton<IRepository, Repository>();
-            services.AddSingleton<ISendEmail, SendEmail>();
-
-
-            services.AddControllers();
+            services
+                .AddApplication()
+                .AddDomain()
+                .AddInfra()
+                .AddApi();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.ConfigureApi(env);
         }
     }
 }
