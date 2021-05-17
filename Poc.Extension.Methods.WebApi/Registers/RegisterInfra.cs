@@ -11,6 +11,6 @@ namespace Poc.Extension.Methods.WebApi.Registers
                     .AddSingleton<IFileServer, FileServer>()
                     .AddSingleton<IProxyService, ProxyService>()
                     .AddSingleton<IRepository, Repository>()
-                    .AddSingleton<ISendEmail, SendEmail>();
+                    .AddSingleton<IEmailSender, EmailSender>();
     }
 }
